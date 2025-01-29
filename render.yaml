@@ -8,9 +8,8 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: kennedy-db
+          name: kennedy_inventario_base  # Cambiado el nombre de la base
           property: connectionString
-
 databases:
-  - name: kennedy-db
+  - name: kennedy_inventario_base  # Cambiado el nombre de la base
     plan: free
