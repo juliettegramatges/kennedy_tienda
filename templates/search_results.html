@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+    <style>
+        /* Estilos globales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Contenedor de los resultados de búsqueda */
+        #search-results {
+            padding: 20px;
+        }
+
+        /* Título de los resultados */
+        #search-results h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0073e6;
+        }
+
+        /* Contenedor para cada producto */
+        .sector-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Estilo de cada producto */
+        .sector {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sector:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sector h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .sector p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .sector img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .sector img.no-image {
+            max-width: 150px;
+            margin: 10px 0;
+        }
+
+        /* Botón para cerrar búsqueda */
+        #close-search {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            margin: 20px auto;
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-search:hover {
+            background-color: #d64a2c;
+        }
+
+        /* Diseño para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .sector {
+                padding: 15px;
+            }
+
+            #search-results h3 {
+                font-size: 1.1rem;
+            }
+
+            .sector h4 {
+                font-size: 1rem;
+            }
+
+            .sector p {
+                font-size: 0.85rem;
+            }
+
+            #close-search {
+                font-size: 0.9rem;
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sección de resultados de búsqueda -->
+    <div id="search-results">
+
+        <!-- Mostrar si se encontraron productos -->
+        {% if filtered_products %}
+            <h3>Resultados de búsqueda para "{{ search_query }}":</h3>
+            <div class="sector-results">
+                {% for product in filtered_products %}
+                    <div class="sector">
+                        <h4>Producto: {{ product.product_name }}</h4>
+                        <p><strong>Sector:</strong> {{ product.sector }}</p>
+                        <p><strong>Zona:</strong> {{ product.zone }}</p>
+                        <p><strong>Área:</strong> {{ product.area }}</p>
+                        {% if product.image %}
+                            <img src="{{ url_for('uploaded_file', filename=product.image) }}" alt="{{ product.product_name }}" class="img-small"/>
+                        {% else %}
+                            <p>No hay imagen disponible</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No se encontraron productos para "{{ search_query }}".</p>
+        {% endif %}
+    </div>
+
+    <!-- Botón para cerrar búsqueda -->
+    <button id="close-search">Cerrar Búsqueda</button>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const closeSearchButton = document.getElementById("close-search");
+            closeSearchButton.addEventListener("click", function() {
+                window.location.href = "/"; // Redirigir al contenido principal
+            });
+        });
+    </script>
+
+</body>
+</html>
