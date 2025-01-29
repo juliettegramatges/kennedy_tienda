@@ -2,14 +2,14 @@ services:
   - type: web
     name: kennedy-tienda
     env: python
-    buildCommand: 
-      - pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt  # Cambiado para usar una cadena simple
     startCommand: gunicorn app:app
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: kennedy_inventario_base  # Cambiado el nombre de la base
+          name: kennedy_inventario_base  # Nombre correcto de la base de datos
           property: connectionString
+
 databases:
-  - name: kennedy_inventario_base  # Cambiado el nombre de la base
+  - name: kennedy_inventario_base
     plan: free
