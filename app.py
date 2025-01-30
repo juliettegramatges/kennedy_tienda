@@ -7,12 +7,12 @@ from flask import send_from_directory, current_app
 import secrets
 from flask_migrate import Migrate
 
-migrate = Migrate(app, db)
-
-
 app = Flask(__name__)
 # Genera una clave secreta segura para Flask
 app.config['SECRET_KEY'] = secrets.token_hex(32)
+
+migrate = Migrate(app, db)
+
 
 # Configuración de la cuenta maestra
 MAESTRO_EMAIL = "admin@kennedy.com"
