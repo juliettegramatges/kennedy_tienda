@@ -22,7 +22,7 @@ MAESTRO_PASSWORD = "kennedy"  # Asegúrate de cambiarla
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Usa la variable de entorno de Render
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = postgresql://kennedy_inventario_base_user:EJtQ2Gw4QCrFtIvndKNfXUHPBBJW0LYU@dpg-cudb9dhu0jms73a33730-a.oregon-postgres.render.com/kennedy_inventario_base
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = "postgresql://kennedy_inventario_base_user:EJtQ2Gw4QCrFtIvndKNfXUHPBBJW0LYU@dpg-cudb9dhu0jms73a33730-a.oregon-postgres.render.com/kennedy_inventario_base"
 
 db = SQLAlchemy(app)
 # Configuración de la carpeta de subida de archivos
