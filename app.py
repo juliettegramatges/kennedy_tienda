@@ -21,7 +21,7 @@ MAESTRO_PASSWORD = "kennedy"  # Asegúrate de cambiarla
 
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  # Utiliza la variable de entorno DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Usa la variable de entorno de Render
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
