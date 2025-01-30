@@ -11,9 +11,6 @@ app = Flask(__name__)
 # Genera una clave secreta segura para Flask
 app.config['SECRET_KEY'] = secrets.token_hex(32)
 
-migrate = Migrate(app, db)
-
-
 # Configuración de la cuenta maestra
 MAESTRO_EMAIL = "admin@kennedy.com"
 MAESTRO_PASSWORD = "kennedy"  # Asegúrate de cambiarla
@@ -27,6 +24,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Define el directorio de uploads
 
 db = SQLAlchemy(app)
+
+
+migrate = Migrate(app, db)
 
 # Modelos de la base de datos
 
