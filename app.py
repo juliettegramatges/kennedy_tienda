@@ -1,14 +1,13 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
-
-
 from werkzeug.utils import secure_filename
 import os
 from flask_sqlalchemy import SQLAlchemy
-
 from flask import send_from_directory, current_app
-
 import secrets
+from flask_migrate import Migrate
+
+migrate = Migrate(app, db)
 
 
 app = Flask(__name__)
